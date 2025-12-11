@@ -42,7 +42,7 @@ const SingleFeaturedCard2: FC = () => {
           <h3>Providing cheap car rental services and safe and comfortable facilities.</h3>
         </div>
         <span className="w-fit px-[30px] py-[15px] bg-[#5CAFFC] rounded-[4px] font-semibold text-base leading-5 flex items-center text-center text-white cursor-pointer">
-          Rent Now
+          Details
         </span>
         <div className="absolute bottom-0 left-[25%] max-[1200px]:w-[70%] max-[1200px]:left-[15%]">
           <img src={car2} alt="Car" className="w-full" />

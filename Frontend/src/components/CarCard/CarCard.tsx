@@ -108,7 +108,7 @@ const CarCard = ({ car }: CarCardType) => {
               to="/car-details"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Rent Now
+              Details
             </Link>
           </RentNowButton>
         </CardRow4>

@@ -1,17 +1,27 @@
-import { FC, useContext } from "react"
+import { FC, useContext, useState } from "react"
 import { Link } from "react-router-dom";
 
 import LogoutIconButton from "../../assets/LogoutIconButton";
 import { Favorite, SearchIcon } from "../../assets/icon";
 import { UserContextObj } from "../../contexts/UserContext";
+import LoginModal from "../UserLogin/LoginModal";
 
 const Header: FC = () => {
   const ServerLink = "http://localhost:9090";
   const userObject = useContext(UserContextObj);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const logout = () => {
     window.open(`${ServerLink}/auth/google/logout`, "_self")
   }
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
 
   return (
     <header className="flex flex-col sm:flex-row items-center justify-between w-full min-h-[80px] sm:h-[8.62%] sm:max-h-[124px] px-4 sm:px-8 bg-white md:px-16 gap-3 sm:gap-0 py-2 sm:py-0">
@@ -22,7 +32,7 @@ const Header: FC = () => {
         <div className="relative flex items-center w-full sm:w-auto sm:min-w-[270px] md:min-w-[300px]">
           <img 
             src={SearchIcon} 
-            alt="Search" 
+            alt="Search"
             className="absolute left-4 w-6 h-6 pointer-events-none"
           />
           <input
@@ -51,12 +61,13 @@ const Header: FC = () => {
         {!userObject?.googleId && (
           <div 
             className="cursor-pointer border-gray-600 rounded-full px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 bg-blue-600 text-white font-medium text-sm sm:text-base whitespace-nowrap"
-            onClick={() => window.open(`${ServerLink}/auth/google/login`, "_self")}
+            onClick={openLoginModal}
           >
             Login
           </div>
         )}
       </div>
+      <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
     </header>
   );
 };

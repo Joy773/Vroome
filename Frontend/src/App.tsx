@@ -6,6 +6,7 @@ import { ScrollToTop } from './components';
 import { GlobalStyles } from './globalStyles';
 import { AddCar, CarDetails, Category, Home, Profile, Error, SearchFilter, Checkout } from './pages';
 import { theme } from './types/theme-type';
+import { Toaster } from 'react-hot-toast';
 
 const AppContent: FC = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const AppContent: FC = () => {
 
   return (
     <>
+    <Toaster position="top-right"  reverseOrder={false}/>
       {showHeader && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />

@@ -1,10 +1,39 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Link, useNavigate} from 'react-router-dom';
 
 const Checkout: FC = () => {
-  return (
+
+ const navigate = useNavigate();
+
+  useEffect(() => {
+  document.querySelectorAll("input, textarea, select").forEach((el) => {
+    if (
+      el instanceof HTMLInputElement ||
+      el instanceof HTMLTextAreaElement ||
+      el instanceof HTMLSelectElement
+    ) {
+      el.required = true;
+    }
+  });
+}, [])
+
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  if(form.checkValidity()) {
+    toast.success("Form submitted successfully!");
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  } 
+};
+
+
+    return (
     <main className="min-h-screen w-full bg-gray-50">
       <div className="container mx-auto px-4 py-8 max-w-4xl space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
         {/* Billing Info Section */}
         <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
           {/* Header Section */}
@@ -17,7 +46,7 @@ const Checkout: FC = () => {
           </div>
 
           {/* Form Fields */}
-          <form className="space-y-6">
+          <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Left Column */}
               <div className="space-y-6">
@@ -81,7 +110,7 @@ const Checkout: FC = () => {
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
 
         {/* Rental Info Section */}
@@ -96,7 +125,7 @@ const Checkout: FC = () => {
           </div>
 
           {/* Rental Form */}
-          <form className="space-y-8">
+          <div className="space-y-8">
             {/* Pick-Up Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-4">
@@ -243,22 +272,7 @@ const Checkout: FC = () => {
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-4 pt-4">
-              <Link 
-                to="/car-details" 
-                className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                Back
-              </Link>
-              <button 
-                type="submit"
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Continue
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
 
         {/* Payment Method Section */}
@@ -273,7 +287,7 @@ const Checkout: FC = () => {
           </div>
 
           {/* Payment Options */}
-          <form className="space-y-6">
+          <div className="space-y-6">
             {/* Credit Card Option */}
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-4">
@@ -318,22 +332,7 @@ const Checkout: FC = () => {
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-4 pt-4">
-              <Link 
-                to="/car-details" 
-                className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                Back
-              </Link>
-              <button 
-                type="submit"
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Continue
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
 
         {/* Confirmation Section */}
@@ -348,7 +347,7 @@ const Checkout: FC = () => {
           </div>
 
           {/* Checkboxes */}
-          <form className="space-y-6">
+          <div className="space-y-6">
             <div className="space-y-4">
               {/* Marketing Checkbox */}
               <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
@@ -377,16 +376,6 @@ const Checkout: FC = () => {
               </div>
             </div>
 
-            {/* Rent Now Button */}
-            <div className="pt-4">
-              <button 
-                type="submit"
-                className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Rent Now
-              </button>
-            </div>
-
             {/* Security Section */}
             <div className="flex items-start gap-3 pt-6 border-t border-gray-200">
               <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -409,8 +398,25 @@ const Checkout: FC = () => {
                 <p className="text-xs text-gray-500">We are using the most advanced security to provide you the best experience ever.</p>
               </div>
             </div>
-          </form>
+          </div>
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-4 pt-4">
+          <Link 
+            to="/car-details" 
+            className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            Back
+          </Link>
+          <button 
+            type="submit"
+            className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+          >
+            Rent Now
+          </button>
+        </div>
+        </form>
       </div>
     </main>
   );
