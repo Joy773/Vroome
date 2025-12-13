@@ -9,9 +9,11 @@ type DropDownProps = {
 };
 
 const DropDown = ({ dropDownItems, openMenu, dispatchClickFunction, handleDropDownClose}: DropDownProps) => {
-  const handleClick = (e: Event): void => {
-    const target = e.target as HTMLElement;
-    dispatchClickFunction(target.innerText);
+  const handleClick = (e: React.MouseEvent<HTMLLIElement>): void => {
+    const target = e.currentTarget;
+    if (dispatchClickFunction) {
+      dispatchClickFunction(target.innerText);
+    }
     handleDropDownClose();
   }
 

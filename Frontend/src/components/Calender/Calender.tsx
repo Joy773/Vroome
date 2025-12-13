@@ -5,18 +5,27 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { DatePickerWrapperStyles } from './styles';
 import DownArrow from '../../assets/icons/DownArrow';
 import format from "date-fns/format";
-import { VoidFunction } from '../../types/index';
+import { Dispatch } from '../../types/index';
 
-type Props = { dateChange: VoidFunction }
+type Props = { dateChange: Dispatch }
+
+interface CustomInputProps {
+  onClick?: () => void;
+  value?: string;
+  onChange?: () => void;
+}
 
 const Calender = ({ dateChange }: Props) => {
   const [startDate, setDate] = useState(new Date);
   const today = new Date();
-  const CustomInput = forwardRef(({ onClick }, ref) => ( <i onClick={onClick} ref={ref}><DownArrow /></i>));
+  const CustomInput = forwardRef<HTMLElement, CustomInputProps>(({ onClick }, ref) => ( <i onClick={onClick} ref={ref}><DownArrow /></i>));
+  CustomInput.displayName = 'CustomInput';
   
-  const selectDateHandler = (d: Date) => {
-    setDate(d);
-    dateChange(format(d, "yyyy/MM/dd"))
+  const selectDateHandler = (d: Date | null) => {
+    if (d) {
+      setDate(d);
+      dateChange(format(d, "yyyy/MM/dd"));
+    }
   }
 
   return (

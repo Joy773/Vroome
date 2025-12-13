@@ -135,7 +135,7 @@ const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose }) => {
               click here
             </button>
           </p>
-        </form>
+     </form>
       </div>
     </StyledModal>
   );

@@ -1,5 +1,10 @@
 import Modal from 'styled-react-modal';
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
+import React from 'react';
+
+const getMediumLargeQuery = (props: { theme: DefaultTheme }): string => props.theme.queries.mediumLargeAndDown;
+const getMediumQuery = (props: { theme: DefaultTheme }): string => props.theme.queries.mediumAndDown;
+const getSmallQuery = (props: { theme: DefaultTheme }): string => props.theme.queries.smallAndDown;
 
 export const StyledModal = Modal.styled`
   position: absolute;
@@ -14,17 +19,17 @@ export const StyledModal = Modal.styled`
   box-shadow: 0px 0px 41px 23px rgba(0,0,0,0.75);
   flex-direction: column;
 
-  @media(${props => props.theme.queries.mediumLargeAndDown}) {
+  @media(${getMediumLargeQuery}) {
     width: 55%;
     aspect-ratio : 1 / 1;
   }
 
-  @media(${props => props.theme.queries.mediumAndDown}) {
+  @media(${getMediumQuery}) {
     width: 70%;
     aspect-ratio : 1 / 1;
   }
 
-  @media(${props => props.theme.queries.smallAndDown}) {
+  @media(${getSmallQuery}) {
     width: 90%;
     height: 60%;
   }
@@ -58,15 +63,17 @@ export const ButtonsContainer = styled.div`
   padding: 20px;
 `;
 
-type ButtonColor = { proceed: boolean };
+type ButtonColor = { $proceed: boolean };
 
-export const Button = styled.button`
+export const Button = styled.button.attrs<ButtonColor>(() => ({
+  type: 'button',
+}))<ButtonColor>`
   width: 100px;
   height: 40px;
   border: none;
   border-radius: 4px;
 
   color: var(--color-white);
-  background-color: ${(props: ButtonColor) => props.proceed ? `var(--color-confirm)` : `var(--color-cancel)`};
+  background-color: ${(props: ButtonColor) => props.$proceed ? `var(--color-confirm)` : `var(--color-cancel)`};
   cursor: pointer;
 `;

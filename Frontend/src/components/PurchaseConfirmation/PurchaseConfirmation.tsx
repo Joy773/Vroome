@@ -15,8 +15,8 @@ const PurchaseConfirmation = () => {
       <Box>
         <Confirmation>Confirmation</Confirmation>
         <ButtonsContainer>
-          <Button proceed={true} onClick={handleCheckout}>Confirm</Button>
-          <Button proceed={false} onClick={toggleModal}>Cancel</Button>
+          <Button $proceed={true} onClick={handleCheckout}>Confirm</Button>
+          <Button $proceed={false} onClick={toggleModal}>Cancel</Button>
         </ButtonsContainer>
       </Box>
     </StyledModal>
