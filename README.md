@@ -1,152 +1,190 @@
-# MORENT
 
-### MORENT - A Modern CarRent Application
-![car](https://user-images.githubusercontent.com/63349857/211439943-30a59190-ef43-4500-a6eb-3c9490105144.png)
+## 🚦 Getting Started
 
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn package manager
 
-MORENT is a web-based application that allows users to rent cars from a variety of locations around the world. Users can search for cars based on their desired location and rental dates, view available options, and book their rental directly through the application.
+### Installation
 
-MORENT features a user-friendly interface and secure payment processing, making it easy and convenient for users to rent cars on the go. The application also includes a variety of filters and sorting options, allowing users to find the perfect car for their needs.
+1. Clone the repository:
+git clone <repository-url>
+cd Frontend2. Install dependencies:
+npm install3. Start the development server:
+npm run dev4. Open your browser and navigate to `http://localhost:5173`
 
-### Application in Action
+### Build for Production
 
-in progress...
+npm run buildThe production build will be created in the `dist/` directory.
 
-### Built With
+### Preview Production Build
 
-MORENT Car Rent Application is built with modern web technologies, TypeScript for type-safe JavaScript, CSS Modules for modular and reusable CSS, and React Context API for managing application state. It also integrates with external platforms like Stripe for payment processing, and MongoDB for data storage. Finally, Google OAuth2 and Passport.js is used to handle user authentication and authorization:
+npm run preview## 📄 Available Scripts
 
-- **TypeScript** is a typed superset of JavaScript that allows developers to add type annotations to their code, providing additional type checking and improved code readability. TypeScript can be used with a variety of different JavaScript libraries and frameworks.
-- **Styled Components** Utilising tagged template literals (a recent addition to JavaScript) and the power of CSS, styled-components allows you to write actual CSS code to style your components. It also removes the mapping between components and styles – using components as a low-level styling construct could not be easier!
-- **Stripe** is a platform for building and managing online payment systems. It provides APIs for integrating with a variety of payment methods, including credit cards, bank transfers, and digital wallets.
-- **Express** is a web application framework for Node.js that provides a simple and flexible way to build web applications and APIs. It includes a range of features for routing, middleware, and error handling.
-- **MongoDB** is a cross-platform document-oriented database that stores data in JSON-like documents. It is designed for flexibility and scalability, making it a popular choice for modern web applications.
-- **Google OAuth 2.0** Google OAuth 2.0 allows users to share specific data with an application while keeping their usernames, passwords, and other information private.
-- **Passport.js** Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production (TypeScript check + Vite build)
+- `npm run preview` - Preview production build
 
-### **Getting Started**
+## 🎨 Key Features
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Dark Mode
+- Toggle dark/light mode from the header
+- Preference saved in localStorage
+- Smooth transitions between themes
+- All components support dark mode
 
-\***\*Prerequisites\*\***
+### Car Management
+- **9 Pre-loaded Cars**: Includes various car types (SUV, Sports Car, Sedan, Luxury)
+- **Car Information**: Each car includes:
+  - Title and brand
+  - Body type
+  - Seat capacity
+  - Gasoline capacity
+  - Daily rental rate
+  - Images
 
-- git
-  If you want to clone the project from GitHub and work with it locally, you will need to have Git installed on your system. You can download and install Git from the official website (**[https://git-scm.com/](https://git-scm.com/)**).
-- Node.js
-  Application requires Node.js to be installed on your system in order to run. You can download and install the latest version of Node.js from the official website (**[https://nodejs.org/](https://nodejs.org/)**).
-- npm (Node Package Manager)
-  npm is the package manager for Node.js, and is used to manage the dependencies and packages required for your Next.js project. It is installed automatically when you install Node.js.
-  To check if npm is installed on your system, you can open a terminal or command prompt and enter the following command:
-  ```bash
-  npm -v
-  ```
+### Search & Filter
+- **Real-time Search**: Search by car name, brand, or body type
+- **Advanced Filters**:
+  - Filter by car type (Sport, SUV, Sedan, etc.)
+  - Filter by capacity (2-8 people)
+  - Price range slider
 
-Once you have these prerequisites in place, you can proceed to clone the project from GitHub using Git.
+### User Features
+- **Favorites**: Click heart icon to add/remove favorites
+- **User Profile**: Display user avatar or initials
+- **Login/Logout**: Email/password authentication
+- **Persistent Data**: Favorites and user data stored in localStorage
 
-\***\*Installing\*\***
+### Booking Flow
+1. Select pick-up location, date, and time
+2. Select drop-off location, date, and time
+3. View car details
+4. Complete checkout with billing information
+5. Payment method selection
 
-Make sure you have all the necessary prerequisites installed on your system. Follow the below steps to install the setup the project on your machine:
+## 🗂️ Context Providers
 
-- Open a terminal or command prompt and navigate to the directory where you want to clone the project.
-- Run the following command to clone the project from GitHub:
-  ```bash
-  git clone https://github.com/sethumadh/MORENT_Modern_Car_Rental_Application.git
-  ```
-- This will create a new directory called " MORENT_Modern_Car_Rental_Application-main " in the current location, containing the code for the Car Rent project.
-- Navigate to the project directory by running the following command:
+The application uses React Context API for state management:
 
-  ```bash
-  cd Morrent-CarRental
-  ```
+1. **DarkModeProvider** - Manages dark/light theme state
+2. **CarsContextProvider** - Manages car data and search functionality
+3. **CarFavouriteContextProvider** - Manages user favorites
+4. **UserContextProvider** - Manages user authentication
+5. **PickUpDropOffContext** - Manages pick-up/drop-off form data
+6. **DropDownContext** - Manages dropdown menu states
 
-  -Navigate to Frontend
+## 📱 Pages
 
-  ```bash
-    cd Frontend
-  ```
+### Home (`/`)
+- Featured car banners
+- Pick-up and drop-off selection
+- Popular cars section
+- Recommendation cars section
 
-- Run the following command to install the project's dependencies using npm:
+### Car Details (`/car-details/:id`)
+- Detailed car information
+- Car images gallery
+- Specifications
+- Pricing information
+- Add to favorites
+- Rent now button
 
-  ```bash
-  npm install
-  ```
+### Favorites (`/favorites`)
+- View all favorited cars
+- Remove favorites
+- Responsive grid layout
 
-- Start the server on the Frontend
+### Search (`/search`)
+- Display search results
+- Search query display
+- Empty state handling
 
-  ```bash
-  npm run dev
-  ```
+### Checkout (`/checkout`)
+- Billing information form
+- Rental information (pick-up/drop-off)
+- Payment method selection
+- Confirmation checkboxes
 
-  -Navigate to Backend
+## 🎯 Components Overview
 
-  ```bash
-    cd Backend
-    cd src
-  ```
+### Header
+- Logo and navigation
+- Dark mode toggle
+- Search bar
+- Favorites icon
+- User avatar/login button
+- User dropdown menu
 
-- Run the following command to install the project's dependencies using npm:
+### CarCard
+- Car image
+- Title and body type
+- Specifications (gas, transmission, capacity)
+- Price display
+- Favorite button
+- Details link
 
-  ```bash
-  npm install
-  ```
+### FeaturedCards
+- Two promotional banners
+- Responsive grid layout
+- Background images
+- Call-to-action buttons
 
-- Start the server on the Backend
+### PickUpDropOff
+- Pick-up location, date, and time selection
+- Drop-off location, date, and time selection
+- Location switcher button
+- Date picker integration
 
-  ```bash
-  nodemon 
-  ```
+### AsideLeft
+- Car type filters
+- Capacity filters
+- Price range slider
+- Material-UI components
 
-- To use the MORENT project, you will need to set up some environment variables on your development machine. Here are the steps to follow:
+## 🎨 Styling Approach
 
-  1. Create a **`.env`** file in the root of the project.
-  2. Add the following variables to the **`.env`** file, replacing the placeholder values with your own:
+- **Tailwind CSS**: Primary styling framework for all components
+- **Styled Components**: Used for global styles and theme provider
+- **Responsive Design**: Mobile-first approach with breakpoints
+- **Dark Mode**: Full dark mode support using Tailwind's `dark:` classes
+- **CSS Variables**: Custom properties for colors and spacing
 
-  ```jsx
-  STRIPE_SECRET_KEY=<your-stripe-secrect-key>
-  STRIPE_PUBLISHABLE_KEY=<your-stripe-publishble-key>
-  MONGO_USERNAME=<your-cloudinary-cloud-name>
-  MONGO_PASSWORD=<your-cloudinary-api-key>
-  SERVER_PORT=<your-server-port>
-  GOOGLE_CLIENT_ID=<your-google-client-id>
-  GOOGLE_SECRET=<your-google-secret>
-  MONGODB_URI=<your-mongodb-uri>
-  SESSION_SECRET=<your-session-secret>
-  ```
+## 🔧 Configuration Files
 
-  1. Save the **`.env`** file.
-     These environment variables are required for various aspects of the project, such as payment processing with Stripe, authentication with Google OAuth 2.0, and database connectivity with MongoDB. Be sure to replace the placeholder values with your own values that you obtained from the respective services.
+- `vite.config.ts` - Vite build configuration
+- `tailwind.config.js` - Tailwind CSS configuration
+- `tsconfig.json` - TypeScript configuration
+- `postcss.config.js` - PostCSS configuration
 
-- Once the dependencies are installed, you can run the project locally by running the following command:
-  ```bash
-  npm start
-  ```
+## 📝 Development Notes
 
-This will start the development server and open the CarRent application in your default web browser.
+### Data Storage
+- Car data is currently hardcoded in `CarsContext.tsx`
+- User data and favorites are stored in localStorage
+- No backend API integration (frontend-only project)
 
-### Features
+### Browser Support
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Responsive design for mobile, tablet, and desktop
 
-- Vehicle Search: Search for a car to rent based on various criteria, such as location, availability, and type of vehicle.
-- Payment processing: Securely enters and processes payment information.
-- Vehicle availability: Display the availability of vehicles in real-time, so users can quickly determine which options are currently available for rent.
-- Vehicle details: View detailed information about the vehicles available for rent, including make and model, features, and pricing.
-- Account management: Create and manage their own profiles within the app, including the ability to save payment information and rental preferences.
-- Posting a vehicle for rent: Users who own a vehicle should be able to list it for rent through the app, setting the availability, pricing, and other details.
-- Liking a vehicle and being able to view liked cars.
-- Authentication - Being able to Sign in or Sign Out of application.
+### Performance
+- Code splitting recommended for large chunks
+- Optimized images and assets
+- Lazy loading where applicable
 
-### Contributing
+## 🤝 Contributing
 
-We welcome contributions to MORENT! If you have an idea for a new feature, an improvement to an existing feature, or a bug fix, please open an issue to discuss it before submitting a pull request. This helps me to review and understand your changes more efficiently.
+This is a frontend-only project. All styling has been converted from styled-components to Tailwind CSS for better maintainability and performance.
 
-To contribute code to MORENTt:
+## 📄 License
 
-1. Fork the repository
-2. Create a new branch for your feature or bug fix
-3. Commit your changes to the new branch
-4. Run the automated tests to ensure that your changes do not break any existing functionality
-5. Open a pull request back to the main repository, including a description of your changes and any relevant issue numbers
+This project is private and proprietary.
 
-Please make sure that your code follows the coding style and standards used in the rest of the project. We also ask that you write tests for your changes, to ensure that they are robust and reliable.
+## 👨‍💻 Development
 
-Thank you for your contribution to MORENT! We appreciate your efforts to help make this a great car renting application.
-# Vroome
+Built with ❤️ using React, TypeScript, and Tailwind CSS.
+
+---
+
+**Note**: This is a frontend-only application. Backend API integration can be added by updating the context providers to fetch data from an API endpoint instead of using hardcoded data.
