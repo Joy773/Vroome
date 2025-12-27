@@ -2,23 +2,6 @@ import { FC, useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { useLocation } from "react-router-dom"
 
-import {
-  Article,
-  CarCardWrapper,
-  CardRow1,
-  CardRow2,
-  CardRow3,
-  CardRow4,
-  CardSpesification,
-  CardSpesificationDiv,
-  CardTag,
-  CardTitle,
-  Icon,
-  PricePerDay,
-  PricePerDaySmall,
-  RentNowButton,
-} from "./styles"
-
 import { CarsContext } from "../../contexts/CarsContext"
 import { UserContextObj } from "../../contexts/UserContext"
 
@@ -60,25 +43,25 @@ const CarCard = ({ car }: CarCardType) => {
 
   const features = [
     {
-      icon: <Icon src={GasIcon} />,
+      icon: <img src={GasIcon} alt="Gas" className="w-6 h-6" />,
       title: `${car.maximum_gasoline}L`,
     },
     {
-      icon: <Icon src={Wheel} />,
+      icon: <img src={Wheel} alt="Wheel" className="w-6 h-6" />,
       type: "Manual",
     },
     {
-      icon: <Icon src={Users} />,
+      icon: <img src={Users} alt="Users" className="w-6 h-6" />,
       qty: `${car.seat_capacity} People`,
     },
   ]
   return (
-    <CarCardWrapper>
-      <Article>
-        <CardRow1>
-          <CardTitle>
-            {car.car_title} <CardTag>{car.car_body_type}</CardTag>
-          </CardTitle>
+    <div className="mt-5 mb-1 px-1 w-full min-w-[280px] max-w-full box-border sm:mt-4 sm:mb-4 sm:px-4 sm:w-1/2 lg:w-1/3 xl:w-1/4">
+      <article className="flex flex-col gap-8 justify-between overflow-hidden rounded-lg bg-white dark:bg-gray-800 h-[400px] p-5 shadow-lg transition-colors duration-200 min-w-0">
+        <div className="h-[10%] flex justify-between">
+          <span className="font-bold text-base leading-[25px] text-gray-800 dark:text-gray-100 transition-colors duration-200">
+            {car.car_title} <span className="block font-semibold text-sm leading-4 text-gray-500 dark:text-gray-400">{car.car_body_type}</span>
+          </span>
           {isFavoritesPage ? (
             <button
               onClick={(e) => {
@@ -119,9 +102,9 @@ const CarCard = ({ car }: CarCardType) => {
               </svg>
             </button>
           ) : (
-            <Icon
+            <img
               src={userId ? (userValue ? FavoriteRed : Favorite) : Favorite}
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent<HTMLImageElement>) => {
                 e.preventDefault()
                 e.stopPropagation()
                 // Only add to favorites if not already favorited
@@ -176,40 +159,41 @@ const CarCard = ({ car }: CarCardType) => {
                 }
               }}
               alt={userValue ? "Remove from favorites" : "Add to favorites"}
+              className="w-6 h-6 cursor-pointer select-none transition-opacity duration-200 hover:opacity-80"
             />
           )}
-        </CardRow1>
-        <CardRow2>
-          <img src={car.file_path} alt={car.car_title} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
-        </CardRow2>
-        <CardRow3>
+        </div>
+        <div className="h-[60%] flex flex-col items-center justify-center overflow-hidden">
+          <img src={car.file_path} alt={car.car_title} className="w-full h-full object-contain object-center" />
+        </div>
+        <div className="h-[10%] flex flex-row justify-between p-0 gap-4 scale-95 w-[105%] -left-[3%] relative">
           {features.map((feature) => (
-            <CardSpesificationDiv key={feature.type}>
+            <span key={feature.type} className="flex flex-row items-center justify-center p-0 gap-0.5">
               {feature.icon}{" "}
-              <CardSpesification>{feature.title}</CardSpesification>
-              <CardSpesification>{feature.type}</CardSpesification>
-              <CardSpesification>{feature.qty}</CardSpesification>
-            </CardSpesificationDiv>
+              <span className="font-medium text-sm leading-[18px] flex items-center text-gray-500 dark:text-gray-400 transition-colors duration-200">{feature.title}</span>
+              <span className="font-medium text-sm leading-[18px] flex items-center text-gray-500 dark:text-gray-400 transition-colors duration-200">{feature.type}</span>
+              <span className="font-medium text-sm leading-[18px] flex items-center text-gray-500 dark:text-gray-400 transition-colors duration-200">{feature.qty}</span>
+            </span>
           ))}
-        </CardRow3>
-        <CardRow4>
-          <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: '1 1 auto' }}>
-            <PricePerDay>
-              ${car.daily_rate}/<PricePerDaySmall>day</PricePerDaySmall>
-            </PricePerDay>
-            <PricePerDaySmall>${car.daily_rate}</PricePerDaySmall>
+        </div>
+        <div className="h-[20%] flex justify-between items-center gap-4 min-w-0">
+          <div className="flex flex-col min-w-0 flex-1">
+            <span className="font-bold text-base leading-[25px] flex items-center whitespace-nowrap text-gray-800 dark:text-gray-100 transition-colors duration-200">
+              ${car.daily_rate}/<span className="font-bold text-xs leading-4 whitespace-nowrap text-gray-500 dark:text-gray-400">day</span>
+            </span>
+            <span className="font-bold text-xs leading-4 flex items-center whitespace-nowrap text-gray-500 dark:text-gray-400 transition-colors duration-200">${car.daily_rate}</span>
           </div>
-          <RentNowButton style={{ flexShrink: 0 }}>
+          <button className="w-[120px] h-11 border-none rounded bg-blue-600 text-white font-semibold cursor-pointer flex-shrink-0">
             <Link
               to={`/car-details/${car._id}`}
-              style={{ textDecoration: "none", color: "white" }}
+              className="text-white no-underline"
             >
               Details
             </Link>
-          </RentNowButton>
-        </CardRow4>
-      </Article>
-    </CarCardWrapper>
+          </button>
+        </div>
+      </article>
+    </div>
   )
 }
 

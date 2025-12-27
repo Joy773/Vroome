@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import Cars from "../components/CarsList/Cars"
 import { CarsContext } from "./CarsContext"
 import { UserContextObj } from "./UserContext"
 

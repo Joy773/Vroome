@@ -31,7 +31,7 @@ const SingleFeaturedCard: FC = () => {
 const SingleFeaturedCard2: FC = () => {
   return (
     <div 
-      className="bg-cover w-full min-w-[327px] rounded-[10px] relative z-10 justify-self-center overflow-hidden h-[clamp(232px,400px,500px)] bg-blue-primary max-[873px]:hidden max-[580px]:h-[clamp(250px,350px,400px)] max-[450px]:h-[300px]"
+      className="bg-cover w-full min-w-[327px] rounded-[10px] relative z-10 justify-self-center overflow-hidden h-[clamp(232px,400px,500px)] bg-blue-primary max-[580px]:h-[clamp(250px,350px,400px)] max-[450px]:h-[300px]"
       style={{ backgroundImage: `url(${DropoffBG})` }}
     >
       <div className="relative z-20 w-full h-full p-[25px] flex flex-col gap-4">

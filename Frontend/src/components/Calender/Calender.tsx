@@ -2,7 +2,6 @@ import { useState, forwardRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { DatePickerWrapperStyles } from './styles';
 import DownArrow from '../../assets/icons/DownArrow';
 import format from "date-fns/format";
 import { Dispatch } from '../../types/index';
@@ -30,7 +29,15 @@ const Calender = ({ dateChange }: Props) => {
 
   return (
     <>
-      <DatePickerWrapperStyles />
+      <style>{`
+        .react-datepicker-wrapper {
+          width: 14px !important;
+          height: 24px !important;
+        }
+        .react-datepicker-popper {
+          z-index: 30 !important;
+        }
+      `}</style>
       <DatePicker
         wrapperClassName='date-picker'
         dateFormat="yyyy/MM/dd"
