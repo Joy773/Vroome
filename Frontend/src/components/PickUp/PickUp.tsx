@@ -46,4 +46,4 @@ const PickUp: FC = () => {
   )
 }
 
-export default PickUp;
+export default PickUp;  

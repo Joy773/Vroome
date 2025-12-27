@@ -1,10 +1,11 @@
 import { FC, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate} from 'react-router-dom';
+import { useDarkMode } from '../../contexts/DarkModeContext';
 
 const Checkout: FC = () => {
-
- const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
+  const navigate = useNavigate();
 
   useEffect(() => {
   document.querySelectorAll("input, textarea, select").forEach((el) => {
@@ -31,18 +32,18 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
 
     return (
-    <main className="min-h-screen w-full bg-gray-50">
+    <main className={`min-h-screen w-full transition-colors duration-200 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       <div className="container mx-auto px-4 py-8 max-w-4xl space-y-6">
         <form onSubmit={handleSubmit} className="space-y-6">
         {/* Billing Info Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+        <div className={`rounded-lg shadow-md p-6 md:p-8 transition-colors duration-200 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
           {/* Header Section */}
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Billing Info</h1>
-              <p className="text-sm md:text-base text-gray-500">Please enter your billing info</p>
+              <h1 className={`text-2xl md:text-3xl font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Billing Info</h1>
+              <p className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Please enter your billing info</p>
             </div>
-            <div className="text-sm md:text-base text-gray-400">Step 1 of 4</div>
+            <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-400'}`}>Step 1 of 4</div>
           </div>
 
           {/* Form Fields */}
@@ -52,7 +53,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
               <div className="space-y-6">
                 {/* Name Field */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Name
                   </label>
                   <input
@@ -60,13 +61,17 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     id="name"
                     name="name"
                     placeholder="Your name"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
 
                 {/* Address Field */}
                 <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="address" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Address
                   </label>
                   <input
@@ -74,7 +79,11 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     id="address"
                     name="address"
                     placeholder="Address"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
               </div>
@@ -83,7 +92,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
               <div className="space-y-6">
                 {/* Phone Number Field */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="phone" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Phone Number
                   </label>
                   <input
@@ -91,13 +100,17 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     id="phone"
                     name="phone"
                     placeholder="Phone number"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
 
                 {/* Town / City Field */}
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="city" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Town / City
                   </label>
                   <input
@@ -105,7 +118,11 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     id="city"
                     name="city"
                     placeholder="Town or city"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
               </div>
@@ -114,14 +131,14 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         </div>
 
         {/* Rental Info Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+        <div className={`rounded-lg shadow-md p-6 md:p-8 transition-colors duration-200 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
           {/* Header Section */}
           <div className="flex justify-between items-start mb-8">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Rental Info</h1>
-              <p className="text-sm md:text-base text-gray-500">Please select your rental date</p>
+              <h1 className={`text-2xl md:text-3xl font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Rental Info</h1>
+              <p className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Please select your rental date</p>
             </div>
-            <div className="text-sm md:text-base text-gray-400">Step 2 of 4</div>
+            <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-400'}`}>Step 2 of 4</div>
           </div>
 
           {/* Rental Form */}
@@ -130,19 +147,23 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-4">
                 <input type="radio" checked readOnly className="w-4 h-4 text-blue-600" />
-                <label className="text-base font-semibold text-gray-800">Pick - Up</label>
+                <label className={`text-base font-semibold ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Pick - Up</label>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Locations */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Locations</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Locations</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Select your city"
                       readOnly
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400 cursor-pointer"
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer ${
+                        isDarkMode 
+                          ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                          : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                      }`}
                     />
                     <svg 
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -157,13 +178,17 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                 {/* Date */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Date</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Select your date"
                       readOnly
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400 cursor-pointer"
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer ${
+                        isDarkMode 
+                          ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                          : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                      }`}
                     />
                     <svg 
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -178,13 +203,17 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                 {/* Time */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Time</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Select your time"
                       readOnly
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400 cursor-pointer"
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer ${
+                        isDarkMode 
+                          ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                          : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                      }`}
                     />
                     <svg 
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -203,19 +232,23 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-4">
                 <input type="radio" readOnly className="w-4 h-4 text-blue-600" />
-                <label className="text-base font-semibold text-gray-800">Drop - Off</label>
+                <label className={`text-base font-semibold ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Drop - Off</label>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Locations */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Locations</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Locations</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Select your city"
                       readOnly
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400 cursor-pointer"
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer ${
+                        isDarkMode 
+                          ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                          : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                      }`}
                     />
                     <svg 
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -230,13 +263,17 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                 {/* Date */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Date</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Select your date"
                       readOnly
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400 cursor-pointer"
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer ${
+                        isDarkMode 
+                          ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                          : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                      }`}
                     />
                     <svg 
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -251,13 +288,17 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                 {/* Time */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Time</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Select your time"
                       readOnly
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400 cursor-pointer"
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer ${
+                        isDarkMode 
+                          ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                          : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                      }`}
                     />
                     <svg 
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -276,14 +317,14 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         </div>
 
         {/* Payment Method Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+        <div className={`rounded-lg shadow-md p-6 md:p-8 transition-colors duration-200 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
           {/* Header Section */}
           <div className="flex justify-between items-start mb-8">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Payment Method</h1>
-              <p className="text-sm md:text-base text-gray-500">Please enter your payment method</p>
+              <h1 className={`text-2xl md:text-3xl font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Payment Method</h1>
+              <p className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Please enter your payment method</p>
             </div>
-            <div className="text-sm md:text-base text-gray-400">Step 3 of 4</div>
+            <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-400'}`}>Step 3 of 4</div>
           </div>
 
           {/* Payment Options */}
@@ -292,41 +333,57 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-4">
                 <input type="radio" name="payment" value="credit" defaultChecked className="w-4 h-4 text-blue-600" />
-                <label className="text-base font-semibold text-gray-800">Credit Card</label>
+                <label className={`text-base font-semibold ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Credit Card</label>
               </div>
 
               {/* Credit Card Form Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pl-8">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Card Number</label>
                   <input
                     type="text"
                     placeholder="Card number"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Expiration Date</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Expiration Date</label>
                   <input
                     type="text"
                     placeholder="DD/MM/YY"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Card Holder</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Card Holder</label>
                   <input
                     type="text"
                     placeholder="Card holder"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">CVC</label>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>CVC</label>
                   <input
                     type="text"
                     placeholder="CVC"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 placeholder:text-gray-400"
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isDarkMode 
+                        ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder:text-gray-400' 
+                        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder:text-gray-400'
+                    }`}
                   />
                 </div>
               </div>
@@ -336,48 +393,48 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         </div>
 
         {/* Confirmation Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+        <div className={`rounded-lg shadow-md p-6 md:p-8 transition-colors duration-200 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
           {/* Header Section */}
           <div className="flex justify-between items-start mb-8">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Confirmation</h1>
-              <p className="text-sm md:text-base text-gray-500">We are getting to the end. Just few clicks and your rental is ready!</p>
+              <h1 className={`text-2xl md:text-3xl font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Confirmation</h1>
+              <p className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>We are getting to the end. Just few clicks and your rental is ready!</p>
             </div>
-            <div className="text-sm md:text-base text-gray-400">Step 4 of 4</div>
+            <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-400'}`}>Step 4 of 4</div>
           </div>
 
           {/* Checkboxes */}
           <div className="space-y-6">
             <div className="space-y-4">
               {/* Marketing Checkbox */}
-              <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+              <div className={`flex items-start gap-3 p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
                 <input 
                   type="checkbox" 
                   id="marketing" 
                   name="marketing"
-                  className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  className={`mt-1 w-4 h-4 text-blue-600 rounded focus:ring-blue-500 ${isDarkMode ? 'border-gray-500' : 'border-gray-300'}`}
                 />
-                <label htmlFor="marketing" className="text-sm text-gray-700 cursor-pointer">
+                <label htmlFor="marketing" className={`text-sm cursor-pointer ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   I agree with sending an Marketing and newsletter emails. No spam, promissed!
                 </label>
               </div>
 
               {/* Terms Checkbox */}
-              <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+              <div className={`flex items-start gap-3 p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
                 <input 
                   type="checkbox" 
                   id="terms" 
                   name="terms"
-                  className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  className={`mt-1 w-4 h-4 text-blue-600 rounded focus:ring-blue-500 ${isDarkMode ? 'border-gray-500' : 'border-gray-300'}`}
                 />
-                <label htmlFor="terms" className="text-sm text-gray-700 cursor-pointer">
+                <label htmlFor="terms" className={`text-sm cursor-pointer ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   I agree with our terms and conditions and privacy policy.
                 </label>
               </div>
             </div>
 
             {/* Security Section */}
-            <div className="flex items-start gap-3 pt-6 border-t border-gray-200">
+            <div className={`flex items-start gap-3 pt-6 border-t ${isDarkMode ? 'border-gray-600' : 'border-gray-200'}`}>
               <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                 <svg 
                   className="w-6 h-6 text-white" 
@@ -394,8 +451,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-800 mb-1">All your data are safe</p>
-                <p className="text-xs text-gray-500">We are using the most advanced security to provide you the best experience ever.</p>
+                <p className={`text-sm font-semibold mb-1 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>All your data are safe</p>
+                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>We are using the most advanced security to provide you the best experience ever.</p>
               </div>
             </div>
           </div>
@@ -405,7 +462,11 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         <div className="flex gap-4 pt-4">
           <Link 
             to="/car-details" 
-            className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
+            className={`px-6 py-2 border rounded-md transition-colors ${
+              isDarkMode 
+                ? 'border-gray-600 text-gray-300 hover:bg-gray-700' 
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+            }`}
           >
             Back
           </Link>

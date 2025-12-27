@@ -68,6 +68,12 @@ export const CarInfo = styled.div`
   background: #FFFFFF;
   border-radius: 10px;
   padding: 24px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  .dark & {
+    background: #1f2937;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -88,6 +94,11 @@ export const CarDescription = styled.div`
     display: flex;
     align-items: center;
     color: #1A202C;
+    transition: color 0.3s ease;
+    
+    .dark & {
+      color: #f9fafb;
+    }
   }
   img{
     width: 24px;
@@ -116,6 +127,11 @@ export const CarRating = styled.div`
     align-items: center;
     letter-spacing: 0.02em;
     color: #3D5278;
+    transition: color 0.3s ease;
+    
+    .dark & {
+      color: #9ca3af;
+    }
   }
   img{
     width: 20px;
@@ -139,6 +155,11 @@ export const CarInfoContent = styled.div`
   margin-bottom: 4rem;
   letter-spacing: -0.02em;
   color: #3D5278;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
 
   @media (min-width: 640px) {
   }
@@ -161,10 +182,21 @@ export const CarPrice = styled.div`
       line-height: 35px;
       align-items: center;
       color: #1A202C;
+      transition: color 0.3s ease;
+      
+      .dark & {
+        color: #f9fafb;
+      }
+      
       span{
         font-size: 16px;
         line-height: 20px;
         color: #90A3BF;
+        transition: color 0.3s ease;
+        
+        .dark & {
+          color: #9ca3af;
+        }
       }
     }
   }
@@ -185,6 +217,12 @@ export const CarPriceAmt = styled.span`
   align-items: center;
   text-decoration-line: line-through;
   color: #90A3BF;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -232,6 +270,11 @@ export const CarSpec = styled.div`
       align-items: center;
       letter-spacing: -0.02em;
       color: #90A3BF;
+      transition: color 0.3s ease;
+      
+      .dark & {
+        color: #9ca3af;
+      }
     }
     span{
       float: right;
@@ -244,6 +287,11 @@ export const CarSpec = styled.div`
       text-align: right;
       letter-spacing: -0.02em;
       color: #3D5278;
+      transition: color 0.3s ease;
+      
+      .dark & {
+        color: #d1d5db;
+      }
     }
   }
 

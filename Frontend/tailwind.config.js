@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // Enable class-based dark mode
   important: true, // This increases Tailwind's specificity to override styled-components
   theme: {
     extend: {

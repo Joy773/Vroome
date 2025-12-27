@@ -8,6 +8,13 @@ export const PickUpWrapper = styled.div`
   padding: 20px;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  .dark & {
+    background-color: #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
   @media (min-width: 640px) {
     padding: 24px;
   }
@@ -52,6 +59,12 @@ export const PickUpDiv = styled.div`
   border-bottom: 1px solid rgba(195, 212, 233, 0.4);
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+  transition: border-color 0.3s ease;
+  
+  .dark & {
+    border-bottom-color: rgba(75, 85, 99, 0.4);
+  }
+  
   &:last-child {
     border-bottom: 0;
     padding-bottom: 0;
@@ -64,6 +77,12 @@ export const PickUpDiv = styled.div`
     margin-bottom: 0;
     padding-right: 0.5rem;
     margin-right: 0.5rem;
+    
+    .dark & {
+      border-right-color: rgba(75, 85, 99, 0.4);
+      border-bottom-color: transparent;
+    }
+    
     &:last-child {
       border-right: 0;
       padding-right: 0;
@@ -76,6 +95,12 @@ export const PickUpDiv2 = styled.div`
   border-bottom: 1px solid rgba(195, 212, 233, 0.4);
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+  transition: border-color 0.3s ease;
+  
+  .dark & {
+    border-bottom-color: rgba(75, 85, 99, 0.4);
+  }
+  
   &:last-child {
     border-bottom: 0;
     padding-bottom: 0;
@@ -89,6 +114,11 @@ export const PickUpDiv2 = styled.div`
     padding-right: 0.5rem;
     margin-right: 0.5rem;
     margin-left: 0.5rem;
+    
+    .dark & {
+      border-right-color: rgba(75, 85, 99, 0.4);
+      border-bottom-color: transparent;
+    }
   }
   @media (min-width: 768px) {
     margin: 0 10px;
@@ -116,6 +146,12 @@ export const PickUpHeader = styled.input``;
 export const PickUpLabel = styled.label`
   font-size: 1rem;
   font-weight: var(--font-weight-semi-bold);
+  color: #1a202c;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #f9fafb;
+  }
 `;
 
 export const PickUpTitle = styled.div`
@@ -126,6 +162,12 @@ export const PickUpTitle = styled.div`
   display: flex;
   align-items: center;
   color: #1a202c;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #f9fafb;
+  }
+  
   @media (min-width: 640px) {
     font-size: 16px;
   }
@@ -140,6 +182,11 @@ export const SelectCity = styled.div`
   color: #90a3bf;
   font-size: 10px;
   line-height: 14px;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
 
   @media (min-width: 640px) {
   }

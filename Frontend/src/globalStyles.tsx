@@ -30,6 +30,14 @@ export const GlobalStyles = createGlobalStyle`
     --border-radius-general: 10px;
   }
 
+  /* Dark Mode Variables */
+  .dark-mode {
+    --color-white: hsl(220deg 15% 15%);
+    --color-background: hsl(220deg 15% 10%);
+    --color-blue-primary: hsl(225deg 70% 65%);
+    --color-blue-secondary: hsl(209deg 90% 75%);
+  }
+
   /* Use a more-intuitive box-sizing model. */
   *, *::before, *::after {
     box-sizing: border-box;
@@ -48,6 +56,17 @@ export const GlobalStyles = createGlobalStyle`
 
     font-family: var(--app-font-family);
     background-color: var(--color-background);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark Mode Styles */
+  .dark-mode {
+    background-color: var(--color-background);
+  }
+
+  .dark-mode body {
+    background-color: var(--color-background);
+    color: hsl(0deg 0% 90%);
   }
 
   /* Add accessible line-height, Improve text rendering */

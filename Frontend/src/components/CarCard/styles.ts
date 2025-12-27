@@ -37,6 +37,16 @@ export const Article = styled.article`
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  .dark & {
+    background-color: #1f2937;
+    --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+      0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -107,6 +117,12 @@ export const CardTitle = styled.span`
   line-height: 25px;
   align-items: center;
   color: #1a202c;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #f9fafb;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -123,6 +139,12 @@ export const CardTag = styled.span`
   line-height: 16px;
   align-items: center;
   color: #90a3bf;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -154,6 +176,12 @@ export const CardSpesification = styled.span`
   display: flex;
   align-items: center;
   color: #90a3bf;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -179,6 +207,12 @@ export const PricePerDay = styled.span`
   display: flex;
   align-items: center;
   color: #1a202c;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #f9fafb;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -195,6 +229,12 @@ export const PricePerDaySmall = styled.span`
   display: flex;
   align-items: center;
   color: #90a3bf;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {

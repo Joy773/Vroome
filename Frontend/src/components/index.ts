@@ -13,12 +13,8 @@ export { default as RecomendationCar } from './CarsList/RecomendationCar';
 export { default as CarCard } from './CarCard/CarCard';
 export { default as Footer } from './Footer/Footer';
 export { default as PurchaseConfirmation } from './PurchaseConfirmation/PurchaseConfirmation';
-export { default as Filter } from "./Filter/Filter"
 export { default as DropDown } from './DropDown/DropDown';
 export { default as Calender } from './Calender/Calender';
-export { default as ProfileComponent } from './Profile/Profile';
-export { default as Confirmation } from './Confirmation/Confirmation';
-export { default as AddCarForm } from './AddCarForm/AddCarForm';
 export { default as AsideLeft } from './AsideLeft/AsideLeft';
 export { default as DetailCar } from './DetailCar/DetailCar';
 export { default as SearchBar } from './SearchBar/SearchBar';

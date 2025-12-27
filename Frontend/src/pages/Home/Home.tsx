@@ -11,9 +11,6 @@ const Home: FC = () => {
       <PickUpDropOff />
       <PopularCar />
       <RecomendationCar />
-      <MoreDiv>
-        <Link to='/category' style={{ textDecoration: 'none' }}><MoreBtn>Show more cars</MoreBtn></Link>
-      </MoreDiv>
       <Footer />
     </HomeWrapper>
   )

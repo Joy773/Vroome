@@ -30,6 +30,12 @@ export const AsideLeft = styled.aside`
   left: 0px;
   top: 0px;
   background: white;
+  transition: background-color 0.3s ease;
+  
+  .dark & {
+    background: #1f2937;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {

@@ -80,7 +80,7 @@ const Footer: FC = () => {
             <FooterContent>
               <LogoContainer>
                 <Link to="/">
-                  <h1 className="text-3xl text-blue-600 font-bold">VROOME</h1>
+                  <h1 className="text-3xl text-blue-600 dark:text-blue-400 font-bold">VROOME</h1>
                 </Link>
               </LogoContainer>
               <FooterContent>
@@ -101,7 +101,7 @@ const Footer: FC = () => {
             }
           </FooterLinkItems>
         </Box>
-        <hr />
+        <hr className="border-gray-300 dark:border-gray-600 opacity-50" />
         <FooterBottom>
           <div>©2025 VROOME. All rights reserved</div>
           <FooterBottomLinkDiv>

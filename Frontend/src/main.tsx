@@ -10,23 +10,26 @@ import { UserContextProvider } from "./contexts/UserContext"
 import { PickUpDropOffContext } from "./contexts/PickUpDropOffContext"
 import { CarsContextProvider } from "./contexts/CarsContext"
 import { CarFavouriteContextProvider } from "./contexts/CarFavouriteContext"
+import { DarkModeProvider } from "./contexts/DarkModeContext"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ModalContext>
-      <ModalProvider>
-        <PickUpDropOffContext>
-          <DropDownContext>
-            <UserContextProvider>
-              <CarsContextProvider>
-                <CarFavouriteContextProvider>
-                  <App />
-                </CarFavouriteContextProvider>
-              </CarsContextProvider>
-            </UserContextProvider>
-          </DropDownContext>
-        </PickUpDropOffContext>
-      </ModalProvider>
-    </ModalContext>
+    <DarkModeProvider>
+      <ModalContext>
+        <ModalProvider>
+          <PickUpDropOffContext>
+            <DropDownContext>
+              <UserContextProvider>
+                <CarsContextProvider>
+                  <CarFavouriteContextProvider>
+                    <App />
+                  </CarFavouriteContextProvider>
+                </CarsContextProvider>
+              </UserContextProvider>
+            </DropDownContext>
+          </PickUpDropOffContext>
+        </ModalProvider>
+      </ModalContext>
+    </DarkModeProvider>
   </React.StrictMode>
 )

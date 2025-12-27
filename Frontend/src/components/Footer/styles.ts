@@ -5,6 +5,12 @@ export const FooterWrapper = styled.footer`
   width: 100%;
   padding: 1.1rem;
   background-color: var(--color-white);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  .dark & {
+    background-color: #111827;
+  }
+  
   @media (min-width: 768px) {
     height: 44%;
     padding: 0rem;
@@ -92,6 +98,12 @@ export const FooterContent = styled.div`
   max-width: 20rem;
   font-size: 16px;
   line-height: 1.25rem;
+  color: #131313;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
 
   @media (min-width: 768px) {
     width: 80%;
@@ -105,6 +117,13 @@ export const LogoContainer = styled.div``;
 export const FooterTitle = styled.p`
   font-weight: 500;
   font-size: 16px;
+  color: #131313;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #f9fafb;
+  }
+  
   @media (min-width: 768px) {
     font-size: 20px;
   }
@@ -122,6 +141,11 @@ export const FooterNav = styled.nav`
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
   --tw-text-opacity: 1;
   color: rgba(107, 114, 128, var(--tw-text-opacity));
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
 
   @media (min-width: 640px) {
   }
@@ -135,6 +159,11 @@ export const FooterLink = styled.a`
   /* margin-bottom: 20px;
   font-size: 18px; */
   text-decoration: none;
+  transition: color 0.3s ease, opacity 0.2s ease;
+  
+  .dark & {
+    color: rgba(156, 163, 175, 0.8);
+  }
 
   &:hover {
     /* color: green; */
@@ -167,6 +196,12 @@ export const FooterBottom = styled.div`
   font-size: 14px;
   justify-content: space-between;
   padding: 45px 0 45px;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -182,6 +217,13 @@ export const FooterBottomLinkDiv = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4rem;
+  color: #131313;
+  transition: color 0.3s ease;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 1024px) {
