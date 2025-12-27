@@ -105,7 +105,7 @@ const CarCard = ({ car }: CarCardType) => {
           </div>
           <RentNowButton>
             <Link
-              to="/car-details"
+              to={`/car-details/${car._id}`}
               style={{ textDecoration: "none", color: "white" }}
             >
               Details

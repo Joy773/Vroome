@@ -69,11 +69,13 @@ const Header: FC = () => {
             }`}
           />
         </div>
-        <img 
-          src={Favorite} 
-          alt="Favorite"
-          className="cursor-pointer rounded-full w-8 h-8 sm:w-11 sm:h-11 hidden md:block"
-        />
+        <Link to="/favorites">
+          <img 
+            src={Favorite} 
+            alt="Favorite"
+            className="cursor-pointer rounded-full w-8 h-8 sm:w-11 sm:h-11 hidden md:block transition-opacity hover:opacity-80"
+          />
+        </Link>
         {userObject?.googleId && (
           <img 
             src={userObject?.image} 

@@ -130,19 +130,110 @@ function CarsContextProvider({ children }: CarsContextProviderProps) {
   // useEffect will run for the first time when this context component renders
   console.log(state.cars)
   useEffect(() => {
-    const fetchcars = async (): Promise<void> => {
-      try {
-        const response = await fetch("http://localhost:9090/cars/get")
-        const data = await response.json()
-        console.log(data)
-        if (response.ok) {
-          dispatch({ type: ActionKind.GetAllCars, payload: data.car })
-        }
-      } catch (error) {
-        console.log(error) // Here we receive the error from the backend and can setan error /modal to show the error to user
-      }
-    }
-    fetchcars()
+    // Use local car data instead of fetching from API
+    const localCars: CarType[] = [
+      {
+        _id: 1,
+        car_title: "All New Rush",
+        car_brand: "Toyota",
+        car_body_type: "SUV",
+        file_path: "/cars/all new rush.svg",
+        seat_capacity: 6,
+        maximum_gasoline: 70,
+        daily_rate: 72,
+        isFavourite: false,
+      },
+      {
+        _id: 2,
+        car_title: "All New Terios",
+        car_brand: "Daihatsu",
+        car_body_type: "SUV",
+        file_path: "/cars/all new terios.svg",
+        seat_capacity: 6,
+        maximum_gasoline: 90,
+        daily_rate: 74,
+        isFavourite: false,
+      },
+      {
+        _id: 3,
+        car_title: "CR - V",
+        car_brand: "Honda",
+        car_body_type: "SUV",
+        file_path: "/cars/cr-v.svg",
+        seat_capacity: 6,
+        maximum_gasoline: 80,
+        daily_rate: 80,
+        isFavourite: false,
+      },
+      {
+        _id: 4,
+        car_title: "Koenigsegg Agera",
+        car_brand: "Koenigsegg",
+        car_body_type: "Sports Car",
+        file_path: "/cars/koenigsegg agera.svg",
+        seat_capacity: 2,
+        maximum_gasoline: 60,
+        daily_rate: 150,
+        isFavourite: false,
+      },
+      {
+        _id: 5,
+        car_title: "MG ZX Excite",
+        car_brand: "MG",
+        car_body_type: "Sedan",
+        file_path: "/cars/mg zx excite.svg",
+        seat_capacity: 5,
+        maximum_gasoline: 65,
+        daily_rate: 68,
+        isFavourite: false,
+      },
+      {
+        _id: 6,
+        car_title: "MG ZX Exclusive",
+        car_brand: "MG",
+        car_body_type: "Sedan",
+        file_path: "/cars/mg zx exclusive.svg",
+        seat_capacity: 5,
+        maximum_gasoline: 65,
+        daily_rate: 75,
+        isFavourite: false,
+      },
+      {
+        _id: 7,
+        car_title: "New MG ZS",
+        car_brand: "MG",
+        car_body_type: "SUV",
+        file_path: "/cars/new mg zs.svg",
+        seat_capacity: 5,
+        maximum_gasoline: 70,
+        daily_rate: 70,
+        isFavourite: false,
+      },
+      {
+        _id: 8,
+        car_title: "Nissan GT-R",
+        car_brand: "Nissan",
+        car_body_type: "Sports Car",
+        file_path: "/cars/nissan gt-r.svg",
+        seat_capacity: 4,
+        maximum_gasoline: 55,
+        daily_rate: 120,
+        isFavourite: false,
+      },
+      {
+        _id: 9,
+        car_title: "Rolls-Royce Dawn",
+        car_brand: "Rolls-Royce",
+        car_body_type: "Luxury",
+        file_path: "/cars/rolls-royce dawn.svg",
+        seat_capacity: 4,
+        maximum_gasoline: 80,
+        daily_rate: 200,
+        isFavourite: false,
+      },
+    ]
+    
+    dispatch({ type: ActionKind.GetAllCars, payload: localCars })
   }, [])
 
   // This function takes the car object filled with all the key value pairs as car argument and creates post request-
