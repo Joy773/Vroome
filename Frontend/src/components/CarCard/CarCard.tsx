@@ -1,5 +1,6 @@
 import { FC, useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast"
+import { useLocation } from "react-router-dom"
 
 import {
   Article,
@@ -37,6 +38,8 @@ type CarCardType = {
 
 const CarCard = ({ car }: CarCardType) => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const isFavoritesPage = location.pathname === '/favorites'
   const [toggle, setToggle] = useState<boolean>(false)
   const context = useContext(CarsContext)
   const carFavouriteContext = useContext(CarFavouriteContext)
@@ -76,37 +79,49 @@ const CarCard = ({ car }: CarCardType) => {
           <CardTitle>
             {car.car_title} <CardTag>{car.car_body_type}</CardTag>
           </CardTitle>
-          <Icon
-            src={userId ? (userValue ? FavoriteRed : Favorite) : Favorite}
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              // Only add to favorites if not already favorited
-              if (!userValue) {
-                handleFavourite(car._id)
-                setToggle(!toggle)
-                addToFavourite(car._id)
-                toast.success(`Added to favorites!`, {
-                  duration: 2000,
-                })
-                // Delay to ensure state update and localStorage write complete before navigation
-                setTimeout(() => {
-                  navigate('/favorites')
-                }, 200)
-              } else {
-                // If already favorited, just toggle (remove) without navigating
+          {isFavoritesPage ? (
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
                 handleFavourite(car._id)
                 setToggle(!toggle)
                 addToFavourite(car._id)
                 toast.success(`Removed from favorites`, {
                   duration: 2000,
                 })
-              }
-            }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  handleFavourite(car._id)
+                  setToggle(!toggle)
+                  addToFavourite(car._id)
+                  toast.success(`Removed from favorites`, {
+                    duration: 2000,
+                  })
+                }
+              }}
+              className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Remove from favorites"
+              title="Remove from favorites"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 text-gray-600 dark:text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          ) : (
+            <Icon
+              src={userId ? (userValue ? FavoriteRed : Favorite) : Favorite}
+              onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
                 // Only add to favorites if not already favorited
@@ -114,8 +129,7 @@ const CarCard = ({ car }: CarCardType) => {
                   handleFavourite(car._id)
                   setToggle(!toggle)
                   addToFavourite(car._id)
-                  toast.success(`${car.car_title} added to favorites!`, {
-                    icon: '❤️',
+                  toast.success(`Added to favorites!`, {
                     duration: 2000,
                   })
                   // Delay to ensure state update and localStorage write complete before navigation
@@ -127,15 +141,43 @@ const CarCard = ({ car }: CarCardType) => {
                   handleFavourite(car._id)
                   setToggle(!toggle)
                   addToFavourite(car._id)
-                  toast.success(`${car.car_title} removed from favorites`, {
-                    icon: '💔',
+                  toast.success(`Removed from favorites`, {
                     duration: 2000,
                   })
                 }
-              }
-            }}
-            alt={userValue ? "Remove from favorites" : "Add to favorites"}
-          />
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  // Only add to favorites if not already favorited
+                  if (!userValue) {
+                    handleFavourite(car._id)
+                    setToggle(!toggle)
+                    addToFavourite(car._id)
+                    toast.success(`Added to favorites!`, {
+                      duration: 2000,
+                    })
+                    // Delay to ensure state update and localStorage write complete before navigation
+                    setTimeout(() => {
+                      navigate('/favorites')
+                    }, 200)
+                  } else {
+                    // If already favorited, just toggle (remove) without navigating
+                    handleFavourite(car._id)
+                    setToggle(!toggle)
+                    addToFavourite(car._id)
+                    toast.success(`Removed from favorites`, {
+                      duration: 2000,
+                    })
+                  }
+                }
+              }}
+              alt={userValue ? "Remove from favorites" : "Add to favorites"}
+            />
+          )}
         </CardRow1>
         <CardRow2>
           <img src={car.file_path} alt={car.car_title} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />

@@ -1,7 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useState, useContext } from 'react';
 import Modal from 'styled-react-modal';
 import styled from 'styled-components';
 import { useDarkMode } from '../../contexts/DarkModeContext';
+import { UserContextObj } from '../../contexts/UserContext';
+import toast from 'react-hot-toast';
 
 const StyledModal = Modal.styled`
   position: fixed;
@@ -38,7 +40,9 @@ type FormData = {
 
 const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const { isDarkMode } = useDarkMode();
+  const { loginWithEmail, registerWithEmail } = useContext(UserContextObj);
   const [state, setState] = useState<'login' | 'register'>('login');
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -47,8 +51,41 @@ const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your login/signup logic here
-    console.log('Form submitted:', { state, formData });
+    setIsLoading(true);
+
+    try {
+      let success = false;
+      
+      if (state === 'login') {
+        success = await loginWithEmail(formData.email, formData.password);
+        if (success) {
+          toast.success('Login successful!');
+          onClose();
+          setFormData({ name: '', email: '', password: '' });
+        } else {
+          toast.error('Invalid email or password');
+        }
+      } else {
+        if (!formData.name.trim()) {
+          toast.error('Please enter your name');
+          setIsLoading(false);
+          return;
+        }
+        success = await registerWithEmail(formData.email, formData.password, formData.name);
+        if (success) {
+          toast.success('Registration successful!');
+          onClose();
+          setFormData({ name: '', email: '', password: '' });
+        } else {
+          toast.error('Email already exists');
+        }
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again.');
+      console.error('Login/Register error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -157,10 +194,14 @@ const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose }) => {
             }`} type="reset">Forget password?</button>
           </div>
 
-          <button type="submit" className={`mt-2 w-full h-11 rounded-full text-white transition-opacity ${
-            isDarkMode ? 'bg-indigo-600 hover:opacity-90' : 'bg-indigo-500 hover:opacity-90'
-          }`}>
-            {state === "login" ? "Login" : "Sign up"}
+          <button 
+            type="submit" 
+            disabled={isLoading}
+            className={`mt-2 w-full h-11 rounded-full text-white transition-opacity ${
+              isDarkMode ? 'bg-indigo-600 hover:opacity-90' : 'bg-indigo-500 hover:opacity-90'
+            } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            {isLoading ? 'Loading...' : (state === "login" ? "Login" : "Sign up")}
           </button>
 
           <p className={`text-sm mt-3 mb-6 transition-colors duration-200 ${

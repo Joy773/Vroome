@@ -4,13 +4,13 @@ import { Header } from "./components"
 import { ThemeProvider } from 'styled-components';
 import { ScrollToTop } from './components';
 import { GlobalStyles } from './globalStyles';
-import { CarDetails, Home, Checkout, Favorites } from './pages';
+import { CarDetails, Home, Checkout, Favorites, Search } from './pages';
 import { theme } from './types/theme-type';
 import { Toaster } from 'react-hot-toast';
 
 const AppContent: FC = () => {
   const location = useLocation();
-  const validRoutes = ['/', '/car-details', '/checkout', '/favorites'];
+  const validRoutes = ['/', '/car-details', '/checkout', '/favorites', '/search'];
   const showHeader = validRoutes.includes(location.pathname);
 
   return (
@@ -22,6 +22,7 @@ const AppContent: FC = () => {
         <Route path="/car-details/:id" element={<CarDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </>
   );
