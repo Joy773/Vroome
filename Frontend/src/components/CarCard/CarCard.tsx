@@ -81,6 +81,17 @@ const CarCard = ({ car }: CarCardType) => {
               setToggle(!toggle)
               addToFavourite(car._id)
             }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                handleFavourite(car._id)
+                setToggle(!toggle)
+                addToFavourite(car._id)
+              }
+            }}
+            alt={userValue ? "Remove from favorites" : "Add to favorites"}
           />
         </CardRow1>
         <CardRow2>

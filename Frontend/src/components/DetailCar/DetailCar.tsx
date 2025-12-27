@@ -139,7 +139,15 @@ const DetailCar: FC<DetailCarProps> = ({ carId }) => {
                             src={isFavourite ? FavoriteRed : Favorite} 
                             alt="Favorite"
                             onClick={handleFavoriteClick}
-                            style={{ cursor: 'pointer' }}
+                            style={{ cursor: 'pointer', userSelect: 'none' }}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault()
+                                    handleFavoriteClick()
+                                }
+                            }}
                         />
                     </CarDescription>
                     <CarRating>

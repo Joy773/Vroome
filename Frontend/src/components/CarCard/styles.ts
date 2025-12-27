@@ -246,6 +246,14 @@ export const PricePerDaySmall = styled.span`
 export const Icon = styled.img`
   width: 24px;
   height: 24px;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
