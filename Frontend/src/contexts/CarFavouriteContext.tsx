@@ -46,7 +46,7 @@ export default function CarFavouriteContextProvider({
   )
   const { Provider } = CarFavouriteContext
   const { googleId } = useContext(UserContextObj)
-  const gId = parseInt(googleId)
+  const gId = googleId ? parseInt(googleId) : 0
   console.log(userFavourite,":userFavourite")
   useEffect(() => {
     //googleId will be null if user is in a logged out state
@@ -82,22 +82,52 @@ export default function CarFavouriteContextProvider({
 
   const handleFavourite = (id: number) => {
     const stored = localStorage.getItem(`${gId}`)
-    if (!stored) return
+    let lS: lSType
     
-    let lS: lSType = JSON.parse(stored)
-    if (!Array.isArray(lS)) return
-    
-    let userFav: userFavType = lS.map((l) => {
-      if (l.carId == id) {
-        return { ...l, value: !l.value }
+    // If no stored data, initialize with all cars
+    if (!stored) {
+      if (cars && cars.length > 0) {
+        lS = cars.map(({ _id }) => ({
+          carId: _id,
+          value: _id === id ? true : false, // Set clicked car to true, others to false
+          gId: gId || 0
+        }))
+      } else {
+        return // Can't initialize without cars
       }
-      return l
-    })
-    localStorage.setItem(
-        `${gId}`,
-      JSON.stringify(userFav)
-    )
-    setUserFavourite(userFav)
+    } else {
+      lS = JSON.parse(stored)
+      if (!Array.isArray(lS)) {
+        // If corrupted data, reinitialize
+        if (cars && cars.length > 0) {
+          lS = cars.map(({ _id }) => ({
+            carId: _id,
+            value: _id === id ? true : false,
+            gId: gId || 0
+          }))
+        } else {
+          return
+        }
+      } else {
+        // Check if the car exists in the array, if not add it
+        const carExists = lS.some((l) => l.carId === id)
+        if (!carExists && cars && cars.length > 0) {
+          // Add the missing car
+          lS.push({ carId: id, value: true, gId: gId || 0 })
+        } else {
+          // Toggle the existing car's favorite status
+          lS = lS.map((l) => {
+            if (l.carId === id) {
+              return { ...l, value: !l.value }
+            }
+            return l
+          })
+        }
+      }
+    }
+    
+    localStorage.setItem(`${gId}`, JSON.stringify(lS))
+    setUserFavourite(lS)
   }
   return (
     <Provider value={{ userFavourite, handleFavourite }}>{children}</Provider>

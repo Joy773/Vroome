@@ -1,4 +1,5 @@
 import { FC, useContext, useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 import {
   Article,
@@ -21,7 +22,7 @@ import { CarsContext } from "../../contexts/CarsContext"
 import { UserContextObj } from "../../contexts/UserContext"
 
 import { FavoriteRed, GasIcon, Users, Wheel, Favorite } from "../../assets/icon"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { CarType } from "../../contexts/CarsContext"
 import { CarFavouriteContext } from "../../contexts/CarFavouriteContext"
 
@@ -35,6 +36,7 @@ type CarCardType = {
 }
 
 const CarCard = ({ car }: CarCardType) => {
+  const navigate = useNavigate()
   const [toggle, setToggle] = useState<boolean>(false)
   const context = useContext(CarsContext)
   const carFavouriteContext = useContext(CarFavouriteContext)
@@ -76,26 +78,67 @@ const CarCard = ({ car }: CarCardType) => {
           </CardTitle>
           <Icon
             src={userId ? (userValue ? FavoriteRed : Favorite) : Favorite}
-            onClick={() => {
-              handleFavourite(car._id)
-              setToggle(!toggle)
-              addToFavourite(car._id)
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              // Only add to favorites if not already favorited
+              if (!userValue) {
+                handleFavourite(car._id)
+                setToggle(!toggle)
+                addToFavourite(car._id)
+                toast.success(`Added to favorites!`, {
+                  duration: 2000,
+                })
+                // Delay to ensure state update and localStorage write complete before navigation
+                setTimeout(() => {
+                  navigate('/favorites')
+                }, 200)
+              } else {
+                // If already favorited, just toggle (remove) without navigating
+                handleFavourite(car._id)
+                setToggle(!toggle)
+                addToFavourite(car._id)
+                toast.success(`Removed from favorites`, {
+                  duration: 2000,
+                })
+              }
             }}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                handleFavourite(car._id)
-                setToggle(!toggle)
-                addToFavourite(car._id)
+                e.stopPropagation()
+                // Only add to favorites if not already favorited
+                if (!userValue) {
+                  handleFavourite(car._id)
+                  setToggle(!toggle)
+                  addToFavourite(car._id)
+                  toast.success(`${car.car_title} added to favorites!`, {
+                    icon: '❤️',
+                    duration: 2000,
+                  })
+                  // Delay to ensure state update and localStorage write complete before navigation
+                  setTimeout(() => {
+                    navigate('/favorites')
+                  }, 200)
+                } else {
+                  // If already favorited, just toggle (remove) without navigating
+                  handleFavourite(car._id)
+                  setToggle(!toggle)
+                  addToFavourite(car._id)
+                  toast.success(`${car.car_title} removed from favorites`, {
+                    icon: '💔',
+                    duration: 2000,
+                  })
+                }
               }
             }}
             alt={userValue ? "Remove from favorites" : "Add to favorites"}
           />
         </CardRow1>
         <CardRow2>
-          <img src={car.file_path} className="max-w-none" />
+          <img src={car.file_path} alt={car.car_title} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
         </CardRow2>
         <CardRow3>
           {features.map((feature) => (
@@ -108,13 +151,13 @@ const CarCard = ({ car }: CarCardType) => {
           ))}
         </CardRow3>
         <CardRow4>
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: '1 1 auto' }}>
             <PricePerDay>
               ${car.daily_rate}/<PricePerDaySmall>day</PricePerDaySmall>
             </PricePerDay>
             <PricePerDaySmall>${car.daily_rate}</PricePerDaySmall>
           </div>
-          <RentNowButton>
+          <RentNowButton style={{ flexShrink: 0 }}>
             <Link
               to={`/car-details/${car._id}`}
               style={{ textDecoration: "none", color: "white" }}

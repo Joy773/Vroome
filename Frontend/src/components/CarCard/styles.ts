@@ -6,6 +6,10 @@ export const CarCardWrapper = styled.div`
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   width: 100%;
+  min-width: 280px; /* Minimum width for card */
+  max-width: 100%;
+  box-sizing: border-box;
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -33,6 +37,7 @@ export const Article = styled.article`
   background-color: #ffffff;
   height: 400px;
   padding: 20px;
+  min-width: 0; /* Prevents flex children from overflowing */
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
@@ -71,6 +76,17 @@ export const CardRow2 = styled.div`
   height: 60%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -102,6 +118,9 @@ export const CardRow4 = styled.div`
   height: 20%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0; /* Prevents flex items from overflowing */
   @media (min-width: 640px) {
   }
   @media (min-width: 768px) {
@@ -206,6 +225,7 @@ export const PricePerDay = styled.span`
   line-height: 25px;
   display: flex;
   align-items: center;
+  white-space: nowrap; /* Prevents text wrapping */
   color: #1a202c;
   transition: color 0.3s ease;
   
@@ -228,6 +248,7 @@ export const PricePerDaySmall = styled.span`
   line-height: 16px;
   display: flex;
   align-items: center;
+  white-space: nowrap; /* Prevents text wrapping */
   color: #90a3bf;
   transition: color 0.3s ease;
   
